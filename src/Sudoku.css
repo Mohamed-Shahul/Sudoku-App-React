@@ -1,0 +1,194 @@
+header{
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+header h1{
+    font-weight: bolder;
+    font-size: 30px;
+    color: blanchedalmond;
+}
+main{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button:hover{
+    cursor: pointer;
+}
+.solRes{
+    border-radius: 5px;
+    width: 365px;
+    height: 35px;
+    display: grid;
+    grid-template-columns: repeat(2,182px);
+    grid-template-rows: repeat(1,30px);
+    align-content: center;
+    margin: 0px 0px 5px 0px;
+}
+#reset{
+    font-size: 30px;
+    margin-right: 15px;
+    background-color: #42275a;
+    color: white;
+    border-radius: 50%;
+    border: none;
+}
+#reset:hover{
+    background-color: white;
+    color: #42275a;
+    cursor: pointer;
+}
+#hint{
+    font-size: 30px;
+    color: orange;
+    border-radius: 50%;
+}
+#unHint{
+    font-size: 30px;
+    border-radius: 50%;
+}
+#hint:hover{
+    cursor: pointer;
+    color: orangered;
+}
+#unHint:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to right, #42275a , #734b6d);
+}
+#solve{
+    font-size: 30px;
+    color: green;
+    border-radius: 50%;
+}
+#solve:hover{
+    cursor: pointer;
+    color: lightgreen;
+}
+.solRes div:last-child{
+    text-align: right;
+}
+
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(9,40px);
+    grid-template-rows: repeat(9,40px);
+    justify-content: center;
+    align-content: center;
+    border-radius:5px;
+    background-color: silver;
+    box-shadow:  5px 5px 3px black;
+    height: 365px;
+    width: 365px;
+}
+.board button{
+    outline: none;
+    border: 1px solid silver;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.board button:hover{
+    background-color: silver;
+}
+.board button:focus-within{
+    background-image: linear-gradient(to right, #42275a , #734b6d);
+}
+.board button.redAlert {
+    background-image: linear-gradient(to left, #E65758 , #771D32);
+    color: white;
+}
+.board button.redAlert:hover {
+    background-image: linear-gradient(to right, #E65758 , #771D32);
+}
+.board button.nonEmpty{
+    background-image: linear-gradient(to right, #42275a , #734b6d);
+    background-color: lavender;
+    color: white;
+}
+.board button.nonEmpty:hover{
+    background-image: linear-gradient(to left, #42275a , #734b6d);
+}
+
+
+.buttons{
+    background-image: linear-gradient(to right, #42275a , #734b6d);
+    border-radius: 10px;
+    width: 580px;
+    height: 80px;
+    display: grid;
+    grid-template-columns: repeat(11,40px);
+    grid-template-rows: repeat(1,40px);
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+    margin: 10px 0px 0px 0px;
+}
+.buttons button{
+    border: none;
+    background-color: #D8D8D8;
+    background-color: silver;
+    border: 1px solid #8800e7;
+    box-shadow: 5px 5px 5px black;
+    color: #42275a;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+.buttons button:hover{
+    background-image: linear-gradient(to right, #42275a , #734b6d);
+    border: 1px solid white;
+    color: white;
+}
+#erase{
+    color: red;
+    font-size: 40px;
+    transition-duration: 0.3s;
+}
+#erase:hover{
+    cursor: pointer;
+    color: darkred;
+}
+
+@media screen and (max-width:600px){
+    header{
+        margin-bottom: 7px;
+    }
+    .solRes {
+        margin-bottom: 10px;
+        width: 290px;
+        height:30px;
+        grid-template-columns: repeat(2,80px);
+        grid-template-rows: repeat(1,30px);
+        gap: 130px;
+    }
+    .board {
+        display: grid;
+        grid-template-columns: repeat(9,32px);
+        grid-template-rows: repeat(9,32px);
+        justify-content: center;
+        align-content: center;
+        border-radius: 5px;
+        height: 292px;
+        width: 292px;
+    }
+    .buttons {
+        width: 298px;
+        height: 100px;
+        grid-template-columns: repeat(6,40px);
+        grid-template-rows: repeat(2,35px);
+        gap: 10px;
+        margin: 20px 0px 0px 0px;
+    }
+}
+
+
