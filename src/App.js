@@ -1,9 +1,9 @@
-import SudokuState from "./SudokuState";
+import Sudoku from "./components/Sudoku";
 
 function App() {
   return (
     <div className="App">
-      <SudokuState/>
+      <Sudoku/>
     </div>
   );
 }

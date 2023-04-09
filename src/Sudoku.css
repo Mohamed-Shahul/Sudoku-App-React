@@ -49,8 +49,9 @@ button:hover{
     border-radius: 50%;
 }
 #unHint{
-    font-size: 30px;
-    border-radius: 50%;
+    font-size: 18px;
+    color: red;
+    font-weight: bolder;
 }
 #hint:hover{
     cursor: pointer;

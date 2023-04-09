@@ -17,7 +17,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
         {/* <h4>Centered Modal</h4> */}
         <p className='text-center text-success font-weight-bold h3'>
-          Great! Your puzzle was solved 👏
+          puzzle solved 👏
         </p>
       </Modal.Body>
       <Modal.Footer>
