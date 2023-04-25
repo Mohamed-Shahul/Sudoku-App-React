@@ -9,15 +9,15 @@ function MyVerticallyCenteredErrorModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          <h1 className='text-danger'>Failed</h1>
+          <h1 className='text-success'>Success</h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {/* <h4>Centered Modal</h4> */}
         <p className='text-center text-danger font-weight-bold h3'>
-          Please Solve The Puzzle !
+          You Won 👏
         </p>
       </Modal.Body>
       <Modal.Footer>

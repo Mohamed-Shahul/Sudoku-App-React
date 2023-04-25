@@ -8,6 +8,9 @@ body {
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to right, #42275a , #734b6d);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Poppins', sans-serif;
 }
 

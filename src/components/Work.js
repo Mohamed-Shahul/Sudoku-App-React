@@ -3,90 +3,124 @@ import sudoku from "sudoku";
 
 export const Work = () => {
 
-// Success Alert & Error Alert State
-  const [modalShow, setModalShow] = useState(false);
-  const [errorModalShow, setErrorModalShow] = useState(false);
-
-// Board State
+// Create a Sudoku Puzzle's
   const initialBoard = sudoku.makepuzzle();
-  const solveBoard = sudoku.solvepuzzle(initialBoard);
-  const [state, setState] = useState({
-    initialBoard,
-    solveBoard,
-    board: initialBoard,
-    hint: '',
-    status: true,
-    erase: '',
-    count: null
-  })
+  const solvedBoard = sudoku.solvepuzzle(initialBoard)
 
-// CountDown
-  useEffect(() => {
-    let timer;
-    if (state.count >= 0) {
-      timer = setTimeout(() => {
-        setState({ ...state, count: state.count - 1 })
-      }, 1000);
-    }
-    else {
-      clearTimeout(timer)
-    }
-    return () => clearTimeout(timer)
-  })
+// Add a Sudoku puzzle value+1
+  let puzzle = initialBoard.map((cell) =>cell !== null ? cell + 1 : null)
+  let solvedPuzzle = solvedBoard.map((cell) => cell + 1)
 
-//  Handle Hint
-  let handleHint = () => {
-    setState({ ...state, hint: state.board, count: 3, status: false });
-    setTimeout(() => {
-      handleUnHint(); // call handleUnHint after 3 seconds
-    }, 4000);
+// Create a 2D Array for list out The Sudoku Table
+  let puzzle2D = []
+  for (let row = 0; row < 9; row++) {
+    const newRow = []
+    for (let col = 0; col < 9; col++) {
+      let i = row * 9 + col
+      newRow.push(puzzle[i])
+    }
+    puzzle2D.push(newRow)
   }
+  let SolvedPuzzle2D = []
+  for (let row = 0; row < 9; row++) {
+    const newRow = []
+    for (let col = 0; col < 9; col++) {
+      let i = row * 9 + col
+      newRow.push(solvedPuzzle[i])
+    }
+    SolvedPuzzle2D.push(newRow)
+  }
+
+// Sudoku State
+  const [state, setState] = useState({
+    initialPuzzle:puzzle2D,
+    solvedPuzzle: SolvedPuzzle2D,
+    board:SolvedPuzzle2D,
+    selectedRowI: '',
+    selectedColI: '',
+    target: '',
+    hint: '',
+    hintStatus: true,
+    count: null,
+    modalShow: false,
+    errorModalShow: false,
+    newGameStatus: false
+  })
+
+// Auto Solve Once fill the All Cells
+useEffect(()=>{
+  const strPuzzle = state.board.flat().map(val => val === null ? '.' : val).join('');
+  const strSolvedPuzzle=state.solvedPuzzle.flat().map(val=>val).join('')
+
+  if(strPuzzle===strSolvedPuzzle){
+    setState(prevState=>({...prevState,errorModalShow:true}))
+  }
+},[state.board,state.solvedPuzzle])
+
+// Check the Errors
+  let handleCheck = () => {    
+    setState({ ...state, hint: state.board, hintStatus: false, count: 3 })
+    setTimeout(handleUnHint, 3000)
+  }
+
+// Error's Show CountDown
+useEffect(() => {
+    const timer = state.count > 0 && setInterval(() => setState(prevState => ({ ...prevState, count: prevState.count - 1 })), 1000)
+    return () => clearInterval(timer)
+}, [state])
 
 // Handle UnHint
   let handleUnHint = () => {
-    setState({ ...state, hint: '', status: true })
+    setState({ ...state, hint: '', hintStatus: true, count: null })
   }
 
-// Solving the Suduko
-  const handleSolve = () => {
-    let myState = state.board.join('')
-    let solvedState = state.solveBoard.join('')
-  
-    if (myState === solvedState) {
-      setModalShow(true)
-      handleReset()
-    }
-    else {
-      setErrorModalShow(true)
-    }
-  }
-
-// Select the Sudoku cell for Entering the values & Share the index for erase the previous value
-  const handleCell = (e, i) => {
-    setState({ ...state, erase: i })
+// Select the Sudoku cell for Entering the values 
+  const handleCell = (e, rowI, colI) => {
+    setState({ ...state, selectedRowI: rowI, selectedColI: colI, target: e.target })
   }
 
 // Get the Button text to Suduko Cell
   const handleButton = (e) => {
-    const i = state.erase;
-    let newState = { ...state };
-    newState.board[i] = e.target.innerText;
-    setState(newState);
-  }
-
-// Erase the Previous Suduko Value
-  const handleErase = () => {
-    const i = state.erase;
-    let newState = { ...state };
-    newState.board[i] = null;
-    setState(newState);
+    const RowI = state.selectedRowI;
+    const ColI = state.selectedColI;
+    if (RowI !== '') {
+      let newState = { ...state };
+      newState.board[RowI][ColI] = newState.board[RowI][ColI] !== null ? newState.board[RowI][ColI] : e.target.innerText
+      setState(newState);
+    }
   }
 
 // Reset the Suduko
-  const handleReset = () => {
-    const initialBoard = sudoku.makepuzzle();
-    const solveBoard = sudoku.solvepuzzle(initialBoard);
-    setState({ ...state, initialBoard, solveBoard, board: initialBoard })
+const handleReset = () => {
+  let copy=state.initialPuzzle.map((rowVal)=>(
+    rowVal.map((cell)=>(
+      typeof cell==='string'?null:cell
+    ))
+  ))
+  setState({ ...state, board:copy });
+}
+
+  // Start the New Sudoku
+
+  const handleNewGame = () => {
+    setState({ ...state, modalShow: true })
   }
-  return { state, modalShow, setModalShow, setErrorModalShow, errorModalShow, handleErase, handleReset, handleButton, handleCell, handleHint, handleUnHint, handleSolve };
+  if (state.newGameStatus) {
+      setState({
+        initialPuzzle: puzzle2D,
+        solvedPuzzle: SolvedPuzzle2D,
+        board: puzzle2D,
+        selectedRowI: '',
+        selectedColI: '',
+        target: '',
+        hint: '',
+        hintStatus: true,
+        count: null,
+        modalShow: false,
+        errorModalShow: false,
+        newGameStatus: false
+      })
+  }
+
+  return { state, setState, handleReset, handleButton, handleCell, handleCheck, handleUnHint, handleNewGame };
 };
