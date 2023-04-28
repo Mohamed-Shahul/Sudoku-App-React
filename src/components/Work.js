@@ -35,7 +35,7 @@ export const Work = () => {
   const [state, setState] = useState({
     initialPuzzle:puzzle2D,
     solvedPuzzle: SolvedPuzzle2D,
-    board:SolvedPuzzle2D,
+    board:puzzle2D,
     selectedRowI: '',
     selectedColI: '',
     target: '',
@@ -44,6 +44,7 @@ export const Work = () => {
     count: null,
     modalShow: false,
     errorModalShow: false,
+    resetAlert:false,
     newGameStatus: false
   })
 
@@ -97,7 +98,8 @@ const handleReset = () => {
       typeof cell==='string'?null:cell
     ))
   ))
-  setState({ ...state, board:copy });
+  // setState({ ...state, board:copy });
+  setState({...state,hint:copy,resetAlert:true})
 }
 
   // Start the New Sudoku
@@ -118,6 +120,7 @@ const handleReset = () => {
         count: null,
         modalShow: false,
         errorModalShow: false,
+        resetAlert:false,
         newGameStatus: false
       })
   }

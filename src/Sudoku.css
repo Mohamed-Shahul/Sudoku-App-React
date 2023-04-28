@@ -1,28 +1,42 @@
 header{
     width: 100%;
-    border-bottom: 1px solid #190e22;
-    display: flex;
-    justify-content: center;
+    border-bottom: 1px solid silver;
 }
-header>div{
+header div{
     display: grid;
-    grid-template-columns: 600px 600px;
+    grid-template-columns: 150px 100px;
     grid-template-rows: 50px;
+    justify-content: left;
     align-items: center;
-}
-header div:nth-child(2){
-    display: grid;
-    grid-template-columns: 100px 100px;
-    grid-template-rows: 50px;
-    align-items: center;
-    justify-content: right;
+    padding-left: 40px;
 }
 header h1{
     font-size: 20px;
     font-weight: bolder;
+    color: silver;
+}
+.link{
+    text-decoration: none;
+    color: silver;
+}
+.link:hover{
+    text-decoration: none;
+    cursor: pointer;
     color: white;
 }
-
+section{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+section table{
+    border :1px solid silver; 
+}
+section table td{
+    border :1px solid grey;
+    padding: 10px; 
+    color: white;
+}
 
 main{
     width: 100%;
@@ -50,15 +64,6 @@ main{
     border-radius: 5px;
     font-weight: bold;
 }
-#reset{
-    background-color: red;
-}
-#restart{
-    background-color: green;
-}
-
-
-
 .board table{
     border: 3px solid silver;
     border-collapse: collapse;
@@ -80,10 +85,6 @@ main{
 .board table tbody tr td:nth-child(6){
     border-right: 2px solid black;
 }
-/* .board table tbody tr td:hover{
-    background-image:linear-gradient(to left,silver, silver);
-    cursor: pointer;
-} */
 
 .board table tbody tr td.nonEmpty{
     background-image: linear-gradient(to right, #42275a , #734b6d);
@@ -106,41 +107,11 @@ main{
     background-image: linear-gradient(to right, silver , silver);
     color: black;
 }
-/* .board table tbody tr td.backWhite:hover{
-    background-image:linear-gradient(yo right,silver,silver);
-     cursor: pointer; 
-} */
-#backWhite:focus-within{
-    background: silver;
-}
-#backWhite{
-    background-image: linear-gradient(to right, white , white);
-    color: black;
-}
-
-#nonEmpty{
-    background-image: linear-gradient(to right, #42275a , #734b6d);
-    color: white;
-}
-#redAlert{
-    background-image: linear-gradient(to right, red , red);
-    color: black;
-}
-
-
-
-
-
 
 
 button:hover{
     cursor: pointer;
 }
-
-
-
-
-
 .buttons{
     border-radius: 5px;
     width: 160px;
@@ -181,23 +152,18 @@ button:hover{
 }
 
 
-@media screen and (max-width:330px){
-    body{
-        height: fit-content;
+@media screen and (max-width:600px){
+    header div{
+        grid-template-columns: 100px 100px;
+        grid-template-rows: 40px;
+        padding-left: 20px;
     }
-    header>div {
-        grid-template-columns: 110px 190px;
-        align-items: center;
-        justify-items: center;
+     header h1{
+        font-size: 15px;
     }
-    header h1{
-        font-size: 13px;
-    }
-    header div:nth-child(2) {
-        display: grid;
-        grid-template-columns: 50px 50px;
-        justify-content: right;
-        justify-items: right;
+    section table{
+        border :1px solid silver; 
+        width: 300px;
     }
     main {
         margin: 0px auto;
@@ -215,12 +181,8 @@ button:hover{
         grid-template-rows: 35px 330px;
         justify-content: center;
     }
-    .actionButtons {
-        display: grid;
-        grid-template-rows: 25px;
-        grid-template-columns: 60px 90px;
-        align-content: center;
-        justify-content: space-around;
+    .board{
+        margin-top: 10px;
     }
     .board table tbody tr td {
         border: 1px solid silver;

@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function MyVerticallyCenteredModal(props) {
+function NewGameAlert(props) {
   
   return (
     <Modal
@@ -28,4 +28,4 @@ function MyVerticallyCenteredModal(props) {
     </Modal>
   );
 }
-export default MyVerticallyCenteredModal;
+export default NewGameAlert;

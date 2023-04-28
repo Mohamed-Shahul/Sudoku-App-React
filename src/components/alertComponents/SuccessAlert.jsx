@@ -15,8 +15,7 @@ function MyVerticallyCenteredErrorModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* <h4>Centered Modal</h4> */}
-        <p className='text-center text-danger font-weight-bold h3'>
+        <p className='text-center text-success font-weight-bold h3'>
           You Won 👏
         </p>
       </Modal.Body>
